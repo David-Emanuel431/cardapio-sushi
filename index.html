@@ -10,224 +10,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-color: #050505;
-            --card-bg: #121212;
-            --card-border: #222222;
-            --primary-red: #E63946;
-            --primary-red-hover: #D62828;
-            --text-light: #F8F9FA;
-            --text-muted: #9CA3AF;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            padding-bottom: 100px;
-        }
-
-        /* Banner com gradiente para misturar suavemente com o fundo */
-        .banner {
-            width: 100%;
-            height: 240px;
-            position: relative;
-            background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .banner::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--bg-color));
-        }
-
-        .banner-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 2;
-        }
-
-        .banner-content h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-
-        .menu-container {
-            padding: 0 20px 20px 20px;
-            max-width: 600px;
-            margin: -20px auto 0 auto;
-            position: relative;
-            z-index: 3;
-        }
-
-        .categoria-titulo {
-            font-size: 22px;
-            font-weight: 600;
-            margin: 30px 0 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .categoria-titulo::before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 22px;
-            background-color: var(--primary-red);
-            border-radius: 4px;
-        }
-
-        /* Cartões Modernos (Dark Mode Mantido) */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            display: flex;
-            padding: 14px;
-            margin-bottom: 16px;
-            gap: 16px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .foto-produto {
-            width: 110px;
-            height: 110px;
-            border-radius: 14px;
-            object-fit: cover;
-            background-color: #1A1A1A;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .info-produto {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .info-produto h3 {
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 6px;
-        }
-
-        .descricao {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .linha-compra {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-        }
-
-        .preco {
-            font-weight: 700;
-            color: var(--text-light);
-            font-size: 17px;
-        }
-
-        /* --- NOVOS CONTROLOS ESTILO IFOOD (Adaptados para Dark Mode) --- */
+        /* [O CSS INTEIRO CONTINUA EXATAMENTE IGUAL À VERSÃO ANTERIOR (v5)] */
+        :root { --bg-color: #050505; --card-bg: #121212; --card-border: #222222; --primary-red: #E63946; --primary-red-hover: #D62828; --text-light: #F8F9FA; --text-muted: #9CA3AF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-color); color: var(--text-light); padding-bottom: 100px; }
+        .banner { width: 100%; height: 240px; position: relative; background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; }
+        .banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; background: linear-gradient(to bottom, transparent, var(--bg-color)); }
+        .banner-content { position: absolute; bottom: 20px; left: 20px; z-index: 2; }
+        .banner-content h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+        .menu-container { padding: 0 20px 20px 20px; max-width: 600px; margin: -20px auto 0 auto; position: relative; z-index: 3; }
+        .categoria-titulo { font-size: 22px; font-weight: 600; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; }
+        .categoria-titulo::before { content: ''; display: block; width: 4px; height: 22px; background-color: var(--primary-red); border-radius: 4px; }
+        .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; display: flex; padding: 14px; margin-bottom: 16px; gap: 16px; transition: transform 0.2s ease, border-color 0.2s ease; }
+        .foto-produto { width: 110px; height: 110px; border-radius: 14px; object-fit: cover; background-color: #1A1A1A; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .info-produto { display: flex; flex-direction: column; justify-content: space-between; width: 100%; }
+        .info-produto h3 { font-size: 16px; font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+        .descricao { font-size: 13px; color: var(--text-muted); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .linha-compra { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .preco { font-weight: 700; color: var(--text-light); font-size: 17px; }
         .controle-qtd { display: flex; align-items: center; gap: 12px; border: 1px solid var(--card-border); border-radius: 999px; padding: 4px 12px; background: #1A1A1A; }
         .btn-controle { background: none; border: none; font-size: 18px; color: var(--primary-red); cursor: pointer; font-weight: 600; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;}
         .btn-controle.lixeira { color: var(--text-muted); font-size: 14px; }
         .qtd-numero { font-size: 14px; font-weight: 600; min-width: 16px; text-align: center; color: var(--text-light);}
-        
-        .btn-add-inicial { 
-            background-color: var(--primary-red); 
-            color: white; 
-            border: none; 
-            padding: 8px 18px; 
-            border-radius: 999px; 
-            font-size: 13px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
-        }
-
-        /* Carrinho com Efeito Vidro (Dark Mode) */
-        .carrinho-fixo {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: center;
-            z-index: 100;
-            transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .carrinho-fixo.visivel {
-            transform: translateY(0);
-        }
-
-        .btn-ver-sacola {
-            width: 100%;
-            max-width: 560px;
-            background-color: var(--primary-red);
-            color: white;
-            border: none;
-            padding: 16px 20px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* --- NOVA TELA DA SACOLA (Dark Mode) --- */
+        .btn-add-inicial { background-color: var(--primary-red); color: white; border: none; padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3); }
+        .carrinho-fixo { position: fixed; bottom: 0; left: 0; width: 100%; padding: 20px; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: center; z-index: 100; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .carrinho-fixo.visivel { transform: translateY(0); }
+        .btn-ver-sacola { width: 100%; max-width: 560px; background-color: var(--primary-red); color: white; border: none; padding: 16px 20px; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4); display: flex; justify-content: space-between; align-items: center; }
         .modal-sacola { position: fixed; top: 100%; left: 0; width: 100%; height: 100vh; background: var(--bg-color); z-index: 200; transition: top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; }
         .modal-sacola.aberto { top: 0; }
-        
         .header-sacola { background: var(--card-bg); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); }
         .header-sacola h2 { font-size: 16px; font-weight: 600; color: var(--text-light); }
         .btn-fechar { background: none; border: none; font-size: 24px; color: var(--text-light); cursor: pointer; }
-        
         .lista-sacola { flex: 1; overflow-y: auto; padding: 20px; background: var(--bg-color); }
         .item-sacola { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px;}
         .item-sacola-info h4 { font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--text-light);}
         .item-sacola-preco { color: var(--text-muted); font-size: 14px;}
-        
         .resumo-sacola { background: var(--card-bg); padding: 25px 20px 40px 20px; border-top: 1px solid var(--card-border);}
         .linha-resumo { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: var(--text-muted);}
         .linha-total { font-weight: 600; font-size: 18px; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--card-border); color: var(--text-light);}
-        
         .btn-continuar { width: 100%; background-color: var(--primary-red); color: white; border: none; padding: 18px; border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 20px; box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);}
-
         .mensagem-erro { color: #ffb703; padding: 40px 20px; text-align: center; font-weight: 500;}
     </style>
 </head>
@@ -241,12 +62,9 @@
     </header>
 
     <main class="menu-container" id="menu-container">
-        <div class="mensagem-erro">
-            A preparar o menu...
-        </div>
+        <div class="mensagem-erro">A preparar o menu...</div>
     </main>
 
-    <!-- Barra que fica embaixo na tela inicial -->
     <div class="carrinho-fixo" id="barra-carrinho">
         <button class="btn-ver-sacola" onclick="abrirSacola()">
             <span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;">
@@ -257,47 +75,30 @@
         </button>
     </div>
 
-    <!-- Tela inteira da Sacola -->
     <div class="modal-sacola" id="modal-sacola">
         <div class="header-sacola">
             <button class="btn-fechar" onclick="fecharSacola()">&#10005;</button>
             <h2>SACOLA</h2>
             <button style="background:none; border:none; color: var(--primary-red); font-weight:600; cursor: pointer;" onclick="limparSacola()">Limpar</button>
         </div>
-        
-        <div class="lista-sacola" id="lista-sacola">
-            <!-- Itens entram aqui -->
-        </div>
-        
+        <div class="lista-sacola" id="lista-sacola"></div>
         <div class="resumo-sacola">
-            <div class="linha-resumo">
-                <span>Subtotal</span>
-                <span id="sacola-subtotal">R$ 0,00</span>
-            </div>
-            <div class="linha-resumo">
-                <span>Taxa de entrega</span>
-                <span>A combinar</span>
-            </div>
-            <div class="linha-resumo linha-total">
-                <span>Total</span>
-                <span id="sacola-total">R$ 0,00</span>
-            </div>
+            <div class="linha-resumo"><span>Subtotal</span><span id="sacola-subtotal">R$ 0,00</span></div>
+            <div class="linha-resumo"><span>Taxa de entrega</span><span>A combinar</span></div>
+            <div class="linha-resumo linha-total"><span>Total</span><span id="sacola-total">R$ 0,00</span></div>
             <button class="btn-continuar" onclick="enviarParaWhatsApp()">Continuar Pedido</button>
         </div>
     </div>
 
     <script>
-        // O carrinho agora guarda a quantidade de cada ID (nome do produto)
         let carrinho = {}; 
         const numeroWhatsApp = "5586999999999"; 
-        
-        // === COLE O SEU LINK DA PLANILHA AQUI ===
-        const LINK_PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQG7SVycSBuOcOXakyjZje0dqcgAl2wSSpioSzmhAspCvM5UMlxSNpy4nK7QcA_TUQzHWuSKIJrYgej/pub?output=csv"; 
+        const LINK_PLANILHA_CSV = "COLE_O_SEU_LINK_AQUI"; 
         let produtosGlobais = [];
 
         document.addEventListener("DOMContentLoaded", () => {
             if(LINK_PLANILHA_CSV === "COLE_O_SEU_LINK_AQUI") {
-                 document.getElementById('menu-container').innerHTML = `<div class="mensagem-erro">Cole o link da Planilha CSV (linha 228).</div>`;
+                 document.getElementById('menu-container').innerHTML = `<div class="mensagem-erro">Cole o link da Planilha CSV.</div>`;
                  return;
             }
             carregarPlanilha();
@@ -305,7 +106,11 @@
 
         async function carregarPlanilha() {
             try {
-                const resposta = await fetch(LINK_PLANILHA_CSV);
+                // A CORREÇÃO ESTÁ AQUI: Adiciona um carimbo de tempo para quebrar o cache do navegador
+                const antiCache = new Date().getTime(); 
+                const linkComAntiCache = `${LINK_PLANILHA_CSV}&v=${antiCache}`;
+
+                const resposta = await fetch(linkComAntiCache);
                 const dadosTexto = await resposta.text();
                 processarCSV(dadosTexto);
             } catch (erro) {
@@ -329,7 +134,7 @@
                         let precoLimpo = colunas[3].replace(/"/g, '').replace(',', '.').replace(/[^0-9.]/g, '');
                         let nomeProduto = colunas[1].replace(/"/g, '').trim();
                         produtosGlobais.push({
-                            id: nomeProduto, // Usando nome como ID único para simplificar
+                            id: nomeProduto,
                             categoria: colunas[0].replace(/"/g, '').trim(),
                             nome: nomeProduto,
                             descricao: colunas[2].replace(/"/g, '').trim(),
@@ -342,7 +147,6 @@
             renderizarCards();
         }
 
-        // Renderiza a tela principal (Menu)
         function renderizarCards() {
             const container = document.getElementById('menu-container');
             container.innerHTML = ""; 
@@ -355,11 +159,8 @@
                     categoriaAtual = produto.categoria;
                 }
                 const imagemSrc = produto.foto.length > 5 ? produto.foto : 'https://via.placeholder.com/200x200/1a1a1a/e63946?text=Sushi';
-                
-                // Verifica a quantidade no carrinho atual
                 const qtd = carrinho[produto.id] ? carrinho[produto.id].quantidade : 0;
                 
-                // Define qual botão mostrar (Adicionar ou Controles + -)
                 let controlesHTML = ``;
                 if(qtd === 0) {
                     controlesHTML = `<button class="btn-add-inicial" onclick="alterarQtd('${produto.id}', 1)">Adicionar</button>`;
@@ -394,58 +195,44 @@
             });
         }
 
-        // Função que altera a quantidade (tanto na home quanto na sacola)
         function alterarQtd(idProduto, mudanca) {
             if (!carrinho[idProduto]) {
                 const produtoInfo = produtosGlobais.find(p => p.id === idProduto);
                 carrinho[idProduto] = { ...produtoInfo, quantidade: 0 };
             }
-            
             carrinho[idProduto].quantidade += mudanca;
-            
             if (carrinho[idProduto].quantidade <= 0) {
                 delete carrinho[idProduto];
             }
-            
             atualizarTudo();
         }
 
-        // Sincroniza todas as telas (Home, Barra, Sacola)
         function atualizarTudo() {
-            renderizarCards(); // Re-renderiza a home para atualizar os botõezinhos
-            
+            renderizarCards(); 
             let totalItens = 0;
             let valorTotal = 0;
-            
             for (let id in carrinho) {
                 totalItens += carrinho[id].quantidade;
                 valorTotal += (carrinho[id].preco * carrinho[id].quantidade);
             }
-            
-            // Atualiza barra inferior
             const barra = document.getElementById('barra-carrinho');
             if (totalItens > 0) {
                 barra.classList.add('visivel');
                 document.getElementById('resumo-barra-total').innerText = formatarMoeda(valorTotal) + ` / ${totalItens} item(s)`;
             } else {
                 barra.classList.remove('visivel');
-                fecharSacola(); // Se esvaziar, fecha a sacola
+                fecharSacola(); 
             }
-            
-            // Atualiza tela da sacola se estiver aberta
             renderizarSacola(valorTotal);
         }
 
-        // Renderiza o detalhe dentro da sacola
         function renderizarSacola(valorTotal) {
             const containerSacola = document.getElementById('lista-sacola');
             containerSacola.innerHTML = "";
-            
             for (let id in carrinho) {
                 const item = carrinho[id];
                 const iconeMenos = item.quantidade === 1 ? '🗑️' : '−';
                 const classeLixeira = item.quantidade === 1 ? 'lixeira' : '';
-                
                 containerSacola.innerHTML += `
                     <div class="item-sacola">
                         <div class="item-sacola-info">
@@ -460,34 +247,26 @@
                     </div>
                 `;
             }
-            
             document.getElementById('sacola-subtotal').innerText = formatarMoeda(valorTotal);
             document.getElementById('sacola-total').innerText = formatarMoeda(valorTotal);
         }
 
         function abrirSacola() { document.getElementById('modal-sacola').classList.add('aberto'); }
         function fecharSacola() { document.getElementById('modal-sacola').classList.remove('aberto'); }
-        
-        function limparSacola() {
-            carrinho = {};
-            atualizarTudo();
-        }
+        function limparSacola() { carrinho = {}; atualizarTudo(); }
 
         function enviarParaWhatsApp() {
             let textoMensagem = "🍣 *NOVO PEDIDO* 🍣%0A%0A";
             let valorTotal = 0;
-            
             for (let id in carrinho) {
                 const item = carrinho[id];
                 const subtotalItem = item.preco * item.quantidade;
                 valorTotal += subtotalItem;
                 textoMensagem += `▪️ ${item.quantidade}x ${item.nome} (${formatarMoeda(subtotalItem)})%0A`;
             }
-            
             textoMensagem += `%0A💰 *Total dos itens: ${formatarMoeda(valorTotal)}*`;
             textoMensagem += "%0A🛵 *Entrega: a combinar*";
             textoMensagem += "%0A%0A*Por favor, confirmem o meu pedido.*";
-            
             const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
             window.open(linkWhatsApp, '_blank');
         }
