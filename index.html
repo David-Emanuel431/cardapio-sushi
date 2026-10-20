@@ -19,7 +19,6 @@
         .banner-content { position: absolute; bottom: 20px; left: 20px; z-index: 2; }
         .banner-content h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
         
-        /* --- NOVA BARRA DE CATEGORIAS (Sticky) --- */
         .nav-categorias-container { position: sticky; top: 0; background-color: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 90; padding: 15px 0; border-bottom: 1px solid var(--card-border); }
         .nav-categorias-wrapper { max-width: 600px; margin: 0 auto; padding: 0 20px; }
         .nav-categorias { display: flex; overflow-x: auto; gap: 10px; scrollbar-width: none; }
@@ -30,10 +29,9 @@
         
         .menu-container { padding: 10px 20px 20px 20px; max-width: 600px; margin: 0 auto; position: relative; z-index: 3; }
         
-        .categoria-titulo { font-size: 22px; font-weight: 600; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; scroll-margin-top: 80px; /* Margem para o título não ficar escondido debaixo do menu sticky */ }
+        .categoria-titulo { font-size: 22px; font-weight: 600; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; scroll-margin-top: 80px; }
         .categoria-titulo::before { content: ''; display: block; width: 4px; height: 22px; background-color: var(--primary-red); border-radius: 4px; }
         
-        /* Restante do CSS igual ao v6 */
         .card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; display: flex; padding: 14px; margin-bottom: 16px; gap: 16px; transition: transform 0.2s ease, border-color 0.2s ease; }
         .foto-produto { width: 110px; height: 110px; border-radius: 14px; object-fit: cover; background-color: #1A1A1A; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
         .info-produto { display: flex; flex-direction: column; justify-content: space-between; width: 100%; }
@@ -78,7 +76,6 @@
         </div>
     </header>
 
-    <!-- Barra de Categorias -->
     <div class="nav-categorias-container" id="nav-categorias-container" style="display: none;">
         <div class="nav-categorias-wrapper">
             <div class="nav-categorias" id="nav-categorias">
@@ -121,7 +118,7 @@
         const numeroWhatsApp = "5586999999999"; 
         
         // === COLE O SEU LINK DA PLANILHA AQUI ===
-        const LINK_PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQG7SVycSBuOcOXakyjZje0dqcgAl2wSSpioSzmhAspCvM5UMlxSNpy4nK7QcA_TUQzHWuSKIJrYgej/pub?output=csv"; 
+        const LINK_PLANILHA_CSV = "COLE_O_SEU_LINK_AQUI"; 
         
         let produtosGlobais = [];
 
@@ -151,29 +148,62 @@
         }
 
         function gerarIdCategoria(texto) {
-            return "cat-" + texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').toLowerCase();
+            if (!texto) return "cat-padrao";
+            return "cat-" + texto.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, '-').toLowerCase();
+        }
+
+        // Leitor "Blindado" de CSV - Não quebra com aspas ou vírgulas nas descrições
+        function lerLinhaCSV(texto) {
+            let resultado = [];
+            let entreAspas = false;
+            let valorAtual = '';
+            for (let i = 0; i < texto.length; i++) {
+                let caractere = texto[i];
+                if (entreAspas) {
+                    if (caractere === '"') {
+                        if (i + 1 < texto.length && texto[i+1] === '"') { valorAtual += '"'; i++; } 
+                        else { entreAspas = false; }
+                    } else { valorAtual += caractere; }
+                } else {
+                    if (caractere === '"') { entreAspas = true; } 
+                    else if (caractere === ',') { resultado.push(valorAtual.trim()); valorAtual = ''; } 
+                    else { valorAtual += caractere; }
+                }
+            }
+            resultado.push(valorAtual.trim());
+            return resultado;
         }
 
         function processarCSV(textoCSV) {
             const linhas = textoCSV.split('\n');
             produtosGlobais = [];
             for (let i = 1; i < linhas.length; i++) {
-                if (!linhas[i].trim()) continue;
-                const colunas = linhas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); 
-                if (colunas.length >= 6) {
-                    const disponivel = colunas[5].replace(/"/g, '').trim().toLowerCase();
-                    if (disponivel === "sim" || disponivel === "s" || disponivel === "true") {
-                        let precoLimpo = colunas[3].replace(/"/g, '').replace(',', '.').replace(/[^0-9.]/g, '');
-                        let nomeProduto = colunas[1].replace(/"/g, '').trim();
-                        produtosGlobais.push({
-                            id: nomeProduto,
-                            categoria: colunas[0].replace(/"/g, '').trim(),
-                            nome: nomeProduto,
-                            descricao: colunas[2].replace(/"/g, '').trim(),
-                            preco: parseFloat(precoLimpo) || 0,
-                            foto: colunas[4].replace(/"/g, '').trim()
-                        });
+                let linhaStr = linhas[i].trim();
+                if (!linhaStr) continue;
+                
+                let colunas = lerLinhaCSV(linhaStr);
+                
+                // Preenche as colunas vazias para não dar erro
+                while(colunas.length < 6) { colunas.push(""); }
+
+                const disponivel = colunas[5].toLowerCase();
+                if (disponivel === "sim" || disponivel === "s" || disponivel === "true") {
+                    
+                    let precoLimpo = colunas[3].replace(/[R$\s]/g, '').replace(',', '.');
+                    if((precoLimpo.match(/\./g) || []).length > 1) {
+                         precoLimpo = precoLimpo.replace('.', '');
                     }
+                    
+                    let nomeProduto = colunas[1] || "Produto Sem Nome";
+                    
+                    produtosGlobais.push({
+                        id: nomeProduto,
+                        categoria: colunas[0] || "Outros",
+                        nome: nomeProduto,
+                        descricao: colunas[2] || "",
+                        preco: parseFloat(precoLimpo) || 0,
+                        foto: colunas[4] || ""
+                    });
                 }
             }
             renderizarCards();
@@ -189,7 +219,7 @@
             
             if(produtosGlobais.length === 0) {
                  navWrapper.style.display = 'none';
-                 container.innerHTML = `<div class="mensagem-erro">Nenhum produto encontrado.</div>`;
+                 container.innerHTML = `<div class="mensagem-erro">Nenhum produto encontrado. A coluna "Disponivel" precisa ter a palavra "Sim".</div>`;
                  return;
             }
 
@@ -199,7 +229,6 @@
             let categoriasUnicas = [];
 
             produtosGlobais.forEach((produto, index) => {
-                // Ao mudar de categoria, cria o título com um ID específico
                 if (produto.categoria !== categoriaAtual) {
                     categoriasUnicas.push(produto.categoria);
                     const catId = gerarIdCategoria(produto.categoria);
@@ -243,35 +272,27 @@
                 container.innerHTML += cardHTML;
             });
 
-            // Gerar os botões de navegação no topo
             categoriasUnicas.forEach((cat, index) => {
                 const catId = gerarIdCategoria(cat);
                 const activeClass = index === 0 ? 'active' : '';
-                // Adicionamos ícones baseados no texto da categoria de forma inteligente
                 let icone = "🍱";
                 if(cat.toLowerCase().includes("combo")) icone = "🍣";
                 if(cat.toLowerCase().includes("temaki")) icone = "🍙";
                 if(cat.toLowerCase().includes("bebida")) icone = "🥤";
-                if(cat.toLowerCase().includes("entrada")) icone = "🥟";
+                if(cat.toLowerCase().includes("entrada") || cat.toLowerCase().includes("hot")) icone = "🥟";
                 if(cat.toLowerCase().includes("sobremesa")) icone = "🍰";
 
                 navContainer.innerHTML += `<button class="btn-categoria ${activeClass}" onclick="scrollToCategoria('${catId}', this)">${icone} ${cat}</button>`;
             });
         }
 
-        // Função para rolar até à categoria e atualizar o botão ativo
         function scrollToCategoria(id, elementoBotao) {
             const destino = document.getElementById(id);
             if(destino) {
-                // Faz o scroll suave até ao título
                 destino.scrollIntoView({ behavior: 'smooth' });
             }
-            
-            // Remove a classe 'active' de todos os botões e adiciona ao que foi clicado
             document.querySelectorAll('.btn-categoria').forEach(btn => btn.classList.remove('active'));
             elementoBotao.classList.add('active');
-            
-            // Centra o botão clicado na barra (útil no telemóvel quando há muitas categorias)
             elementoBotao.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
